@@ -1,13 +1,15 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>구구단 class로 만들기</title>
-    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>구구단 Class로 만들기</title>
 </head>
 <body>
     <div id="root"></div>
+    
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
     <script type="text/babel">
         class GuGuDan extends React.Component {
             state = {
@@ -81,7 +83,12 @@
                     <React.Fragment>
                         <div>{this.state.first} 곱하기 {this.state.second}는?</div>
                         <form onSubmit={this.onSubmit}>
-                            <input ref={this.onRefInput} type="number" value={this.state.value} onChange={this.onChange}/>
+                            <input 
+                                ref={this.onRefInput} 
+                                type="number" 
+                                value={this.state.value} 
+                                onChange={this.onChange}
+                            />
                             &nbsp;
                             <button>입력!</button>
                         </form>
@@ -91,9 +98,20 @@
                         <div>구구단 계산기</div>
                         <div>
                             <form onSubmit={this.onCalculate}>
-                                <input ref={this.onRefFirstInput} type="number" value={this.state.firstOperand} onChange={this.firstInputHandler} min="1" max="9"/>
+                                <input 
+                                    ref={this.onRefFirstInput} 
+                                    type="number" 
+                                    value={this.state.firstOperand} 
+                                    onChange={this.firstInputHandler} 
+                                    min="1" max="9"
+                                />
                                 &nbsp; X &nbsp;
-                                <input type="number" value={this.state.secondOperand} onChange={this.secondInputHandler} min="1" max="9"/>
+                                <input 
+                                    type="number" 
+                                    value={this.state.secondOperand} 
+                                    onChange={this.secondInputHandler} 
+                                    min="1" max="9"
+                                />
                                 &nbsp;
                                 <button>=</button>
                             </form>
