@@ -1,0 +1,112 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>구구단 class로 만들기</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class GuGuDan extends React.Component {
+            state = {
+                first: Math.ceil(Math.random() * 9),
+                second: Math.ceil(Math.random() * 9),
+                value: '',
+                result: '',
+
+                firstOperand: '',
+                secondOperand: '',
+                answer: '',
+            };
+
+            onSubmit = (e) => {
+                e.preventDefault();
+                if (parseInt(this.state.value) === this.state.first * this.state.second) {
+                    this.setState((prevState) => {
+                        return {
+                            result: `정답! ${prevState.first} X ${prevState.second} = ${prevState.value}`,
+                            first: Math.ceil(Math.random() * 9),
+                            second: Math.ceil(Math.random() * 9),
+                            value: '',
+                        };
+                    });
+                } else {
+                    this.setState({
+                        result: '땡',
+                        value: '',
+                    });
+                }
+                this.input.focus();                
+            };
+
+            onChange = (e) => {
+                this.setState({value: e.target.value});
+            };
+
+            input;
+
+            onRefInput = (c) => { this.input = c; };
+
+
+            // 구구단 계산기
+            onCalculate = (e) => {
+                e.preventDefault();
+                this.setState((prevState) => {
+                    return {
+                        answer: this.state.firstOperand + ' X ' + this.state.secondOperand + ' = ' + prevState.firstOperand * prevState.secondOperand,
+                        firstOperand: '',
+                        secondOperand: '',
+                    };
+                });
+                this.firstInput.focus();
+            }
+
+            firstInputHandler = (e) => {
+                this.setState({firstOperand: e.target.value});
+            }
+
+            secondInputHandler = (e) => {
+                this.setState({secondOperand: e.target.value});
+            }
+
+            firstInput;
+
+            onRefFirstInput = (c) => {this.firstInput = c};
+
+
+            render() {
+                return (
+                    <React.Fragment>
+                        <div>{this.state.first} 곱하기 {this.state.second}는?</div>
+                        <form onSubmit={this.onSubmit}>
+                            <input ref={this.onRefInput} type="number" value={this.state.value} onChange={this.onChange}/>
+                            &nbsp;
+                            <button>입력!</button>
+                        </form>
+                        <div>{this.state.result}</div>
+                        <br/><br/>
+
+                        <div>구구단 계산기</div>
+                        <div>
+                            <form onSubmit={this.onCalculate}>
+                                <input ref={this.onRefFirstInput} type="number" value={this.state.firstOperand} onChange={this.firstInputHandler} min="1" max="9"/>
+                                &nbsp; X &nbsp;
+                                <input type="number" value={this.state.secondOperand} onChange={this.secondInputHandler} min="1" max="9"/>
+                                &nbsp;
+                                <button>=</button>
+                            </form>
+                            <div>{this.state.answer}</div>
+                        </div>
+                    </React.Fragment>
+                );
+            }
+        }
+
+    </script>
+    <script type="text/babel">
+        ReactDOM.render(<GuGuDan/>, document.querySelector('#root'));
+    </script>
+</body>
+</html>
