@@ -10,6 +10,8 @@
 
 ## 2. ZeroCho React 기본 강좌 [🔗](https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-1SYIFn)
 ### 구구단 만들기
-강의 : 구구단 계산 정답 여부 판별
-#### 내가 추가로 구현한 기능 : 값을 넣으면 구구단 계산
 📁 gugudan
+강의 : 구구단 계산 정답 여부 판별
+#### 내가 추가로 구현한 것
+1. 기능: 값을 넣으면 구구단 계산
+2. 구구단 웹팩으로 빌드하기
