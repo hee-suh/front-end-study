@@ -3,6 +3,7 @@ on:
   push:
     paths:
     - Testing/react-basics
+  workflow_dispatch:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
