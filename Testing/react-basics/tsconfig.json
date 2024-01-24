@@ -8,7 +8,7 @@
 		"baseUrl": "src",
 		"allowSyntheticDefaultImports": true,
 		"allowImportingTsExtensions": true,
-		"types": ["jest"], // ["cypress"]
+		"types": ["cypress"], // ["jest"]
 
 		/* Bundler mode */
 		"moduleResolution": "node",
@@ -25,6 +25,7 @@
 		"noFallthroughCasesInSwitch": true
 	},
 	"include": ["src", "**/*.ts"],
-	"exclude": ["cypress.config.ts", "cypress", "node_modules"], // solve clashing types with jest
+	// "exclude": ["cypress.config.ts", "cypress", "node_modules"], // solve clashing types with cypress when using jest
+	"exclude": ["jest.config.cjs", "**/*.spec.tsx", "node_modules"], // solve clashing types with jest when using cypress
 	"references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -6,10 +6,20 @@ import useSignup from '../hooks/useSignup';
 import { Button } from '../stories/Button';
 
 export default function SignupPage() {
+	// TDD - test code 작성 후, 컴포넌트 구현
+	// 1. 회원가입 버튼 비활성화
+	// 2. 이메일, 비밀번호, 비밀번호 확인 input에 입력이 되면, 입력된 값이 state에 저장
+	// 3. 비밀번호와 비밀번호 확인이 일치하는지 확인
+	// 4. 회원가입 버튼 활성화
+	// 5. 회원가입 버튼을 누르면, useSignup 훅을 사용해서 회원가입 요청
+	// 6. 회원가입 요청이 성공하면, alert로 회원가입 성공 메시지를 띄우고, 로그인 페이지로 이동
 	const navigate = useNavigate();
+
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const isSignupActivated = !!email && !!password && password === confirmPassword;
+
 	const { mutate: handleSignup, isSuccess } = useSignup();
 
 	useEffect(() => {
@@ -60,7 +70,7 @@ export default function SignupPage() {
 						/>
 					</InputWrapper>
 					{password != confirmPassword && (
-						<ErrorMessage data-testid="error-message">비밀번호가 일치하지 않습니다</ErrorMessage>
+						<ErrorMessage data-cy="error-message">비밀번호가 일치하지 않습니다</ErrorMessage>
 					)}
 				</InputSection>
 			</div>
@@ -69,7 +79,7 @@ export default function SignupPage() {
 				data-cy="signupButton"
 				primary={true}
 				label="회원가입"
-				disabled={!email || !password || password != confirmPassword}
+				disabled={!isSignupActivated}
 				onClick={() => handleSignup({ username: email, password })}
 			/>
 		</Wrapper>
