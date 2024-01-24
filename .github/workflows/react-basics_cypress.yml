@@ -2,7 +2,7 @@ name: Cypress Tests
 on: 
   push:
     paths:
-    - Testing/react-basics
+    - Testing/react-basics/**
   workflow_dispatch:
 jobs:
   cypress-run:

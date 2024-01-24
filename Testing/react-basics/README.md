@@ -1,6 +1,8 @@
 # react-basics
 
-https://github.com/jasonkang14/react-basics
+Course: https://www.inflearn.com/course/주니어-프론트엔드-테스트-기본기/
+
+Github: https://github.com/jasonkang14/react-basics
 
 ## Overview
 
